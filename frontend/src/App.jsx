@@ -8,6 +8,8 @@ import CallPage from "./pages/CallPage.jsx";
 import ChatPage from "./pages/ChatPage.jsx";
 import OnboardingPage from "./pages/OnboardingPage.jsx";
 import FriendsPage from "./pages/FriendsPage.jsx";
+import DeveloperPage from "./pages/DeveloperPage.jsx";
+import OtpVerificationPage from "./pages/OtpVerificationPage.jsx";
 
 import { Toaster } from "react-hot-toast";
 
@@ -114,6 +116,19 @@ const App = () => {
             )
           }
         />
+        <Route
+          path="/developer"
+          element={
+            isAuthenticated && isOnboarded ? (
+              <Layout showSidebar={true}>
+                <DeveloperPage />
+              </Layout>
+            ) : (
+              <Navigate to={!isAuthenticated ? "/login" : "/onboarding"} />
+            )
+          }
+        />
+        <Route path="/otp-verification" element={<OtpVerificationPage />} />
       </Routes>
 
       <Toaster />

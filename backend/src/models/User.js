@@ -47,6 +47,10 @@ const userSchema = new mongoose.Schema(
         ref: "User",
       },
     ],
+    otp: {
+      code: String,
+      expiresAt: Date,
+    },
   },
   { timestamps: true }
 );

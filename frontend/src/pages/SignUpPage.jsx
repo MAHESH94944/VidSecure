@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ShipWheelIcon } from "lucide-react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 import useSignUp from "../hooks/useSignUp";
 
@@ -11,23 +11,17 @@ const SignUpPage = () => {
     password: "",
   });
 
-  // This is how we did it at first, without using our custom hook
-  // const queryClient = useQueryClient();
-  // const {
-  //   mutate: signupMutation,
-  //   isPending,
-  //   error,
-  // } = useMutation({
-  //   mutationFn: signup,
-  //   onSuccess: () => queryClient.invalidateQueries({ queryKey: ["authUser"] }),
-  // });
+  const navigate = useNavigate();
 
-  // This is how we did it using our custom hook - optimized version
   const { isPending, error, signupMutation } = useSignUp();
 
-  const handleSignup = (e) => {
+  const handleSignup = async (e) => {
     e.preventDefault();
-    signupMutation(signupData);
+    signupMutation(signupData, {
+      onSuccess: (data) => {
+        navigate("/otp-verification", { state: { email: signupData.email, userId: data.userId } });
+      },
+    });
   };
 
   return (
