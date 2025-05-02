@@ -32,7 +32,7 @@ const DeveloperPage = () => {
             role: "Software Developer",
             github: "https://github.com/TanmayMali5404",
             linkedin: "https://www.linkedin.com/in/tanmay-mali/",
-            image: "/TanmayMali_66.jpgnot ",
+            image: "/TanmayMali_66.jpg",
         },
     ];
 
